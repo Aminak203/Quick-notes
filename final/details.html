@@ -1,0 +1,407 @@
+
+<!doctype html>
+
+<html lang="en">
+	
+<head>
+  <title>Quick-Notes</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Unicons CSS -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+  <script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+	  const urlParams = new URLSearchParams(window.location.search);
+	  const error = urlParams.get('error');
+	  if (error) {
+		alert(decodeURIComponent(error));
+	  }
+	});
+
+	function validateLogin(form) {
+      const UserName = form.elements['UserName'].value.trim();
+      const password = form.elements['password'].value.trim();
+
+      if (!UserName || !password) {
+        toastr.warning('Please fill in both the username and password fields.');
+        return false;
+      }
+      return true;
+    }
+    function validateSignup(form) {
+  const UserName = form.elements['UserName'].value.trim();
+  const phoneNumber = form.elements['PhoneNumber'].value.trim();
+  const email = form.elements['Email'].value.trim();
+  const password = form.elements['password'].value.trim();
+
+  if (!UserName || !phoneNumber || !email || !password) {
+    toastr.warning('Please fill in all the required fields.');
+    return false;
+  }
+
+  return true;
+}
+
+
+
+  </script>
+<script>
+  function displayErrorFromQueryString() {
+	
+	  const urlParams = new URLSearchParams(window.location.search);
+	  const loginError = urlParams.get('login_error');
+	  if (loginError) {
+      showNotification(decodeURIComponent(loginError), 'error', 'error_saving_notification');
+      }
+	  
+  }
+      // Function to show a notification
+      function showNotification(message, type, notificationId) {
+      const notification = document.getElementById(notificationId);
+      notification.querySelector('span').textContent = message;
+      notification.classList.add(type);
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.remove(type);
+      }, 4000);
+    }
+
+	</script>
+	
+		  <style>
+              .modal {
+  z-index: 2000;
+}
+.modal-content {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.modal-header,
+.modal-footer {
+  background-color: #007bff;
+  color: #fff;
+}
+.modal-body {
+  padding: 20px;
+}
+input#otp {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+input#otp:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+.modal-header .close {
+  color: #fff;
+}
+
+.modal-backdrop {
+  position: initial !important;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+/* Add this new class for the modal buttons */
+.modal-btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  margin-top: 20px; /* Increase the margin-top */
+}
+
+
+.modal-btn:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.notification.show {
+  opacity: 1;
+  visibility: visible;
+}
+.notification.success {
+      background-color: #28a745;
+    }
+    
+    .notification.error {
+      background-color: #dc3545;
+    }
+    
+    /* Add a close button for notifications */
+    .notification .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+
+            </style>
+</head>
+<body onload="displayErrorFromQueryString()">
+  <div class="notification" id="note_saved_notification"></div>
+<div class="notification" id="error_saving_notification"></div>
+  <div class="section">
+    <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+			<div class="section pb-5 pt-5 pt-sm-2 text-center">
+				<h6 class="mb-0 pb-3"><span>Log In</span><span>Sign Up</span></h6>
+				<input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+				<label for="reg-log"></label>
+				<div class="card-3d-wrap mx-auto">
+
+    
+				  <div class="card-3d-wrapper">
+					<div class="card-front">
+					  <div class="center-wrap">
+						<div class="section text-center">
+						  <h4 class="mb-4 pb-3">Log In</h4>
+						  <!-- <form method="post" action="login.php" onsubmit="return validateLogin(this)"> -->
+                <form id="login_form" method="post" action="login.php">
+
+							<div class="form-group">
+
+          
+							  <input type="text" name="UserName" class="form-style" placeholder="UserName" required />
+							  <i class="input-icon uil uil-user"></i>
+							</div>
+							<div class="form-group mt-2">
+							  <input type="password" name="password" class="form-style" placeholder="password" required />
+							  <i class="input-icon uil uil-lock-alt"></i>
+							</div>
+							<button type="submit" class="btn mt-4"><i class="fas fa-sign-in-alt"></i> Log In</button>
+						  </form>
+						  <p class="mb-0 mt-4 text-center"><a href="resetpassword.php" class="link">Forgot your password?</a></p>
+						</div>
+					  </div>
+					</div>
+					<div class="card-back">
+						<div class="center-wrap">
+						  <div class="section text-center">
+							<h4 class="mb-3 pb-3">Sign Up</h4>
+							<form method="post" action="signup.php" onsubmit="return validateSignup(this)">
+								<div class="form-group">
+									<input type="text" name="UserName" class="form-style" placeholder="UserName" required />
+                  
+									<i class="input-icon uil uil-user"></i>
+								  </div>
+								  <div id="errorMessage" style="color: red;"></div>								  
+							  <div class="form-group mt-2">
+								<input type="tel" name="PhoneNumber" class="form-style" placeholder="Phone Number" required />
+								<i class="input-icon uil uil-phone"></i>
+							  </div>
+							  <div class="form-group mt-2">
+								<input type="email" name="Email" class="form-style" placeholder="Email" required />
+								<i class="input-icon uil uil-at"></i>
+							  </div>
+							  <div class="form-group mt-2">
+								<input type="password" name="password" class="form-style" placeholder="password" required />
+								<i class="input-icon uil uil-lock-alt"></i>
+							  </div>
+                <button type="button" id="submit_send_otp" name="submit_send_otp" class="btn mt-4"><i class="fas fa-envelope"></i> Send OTP</button>
+							</form>
+						<!-- OTP Modal -->
+<!-- Place the OTP Modal outside the card element -->
+
+<!-- OTP Modal -->
+<div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">OTP Verification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div><form id="otpForm" method="post" action="verify_otp.php">
+
+      <div class="modal-body">
+        <form id="otpForm" method="post" action="signup.php">
+          <div class="form-group">
+            <input type="number" name="otp" id="otp" class="form-control" placeholder="Enter OTP" required />
+          </div>
+          <button type="button" id="submit_verify_otp" class="btn modal-btn">Verify OTP</button>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+						  </div>
+						</div>
+					  </div>
+			
+					  <script>
+              console.log(document.querySelector("input[name='UserName']"));
+              document.getElementById('login_form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const loginForm = event.target;
+  if (!validateLogin(loginForm)) {
+    return;
+  }
+
+  const formData = new FormData(loginForm);
+
+  fetch('login.php', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        toastr.success("Account Verified :)");
+        setTimeout(function () {
+      window.location.replace("main.php");
+    }, 1000); // 3000 milliseconds = 3 seconds
+      } else {
+        toastr.error(data.message, 'Error'); // Show the error message
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      toastr.error('An error occurred while logging in. Please try again.', 'Error');
+    });
+});
+
+        
+$('#submit_send_otp').click(function () {
+  const signupForm = document.querySelector("form[action='signup.php']");
+  if (validateSignup(signupForm)) {
+    $.ajax({
+      url: 'sendotp.php',
+      method: 'POST',
+      data: {
+        email: $("input[name='Email']").val(),
+        submit_send_otp: true,
+      },
+      success: function (response) {
+        console.log(response);
+         toastr.success(response, 'OTP Sent');
+        $("#otpModal").modal('show');
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        toastr.error('Error sending OTP. Please try again later.', 'Error');
+      },
+    });
+  }
+});
+
+$('#submit_verify_otp').click(function () {
+  var otp = $('#otp').val();
+
+  if (otp === '') {
+    toastr.warning('Please enter the OTP.', 'Warning');
+    return false;
+  }
+
+  $.ajax({
+    url: 'verify_otp.php',
+    type: 'POST',
+    data: {
+      otp: otp,
+    },
+    success: function (response) {
+      if (response.trim() === 'success') {
+        const signupForm = document.querySelector("form[action='signup.php']");
+        let formData = new FormData(signupForm);
+        formData.append('otp', otp);
+
+        $.ajax({
+          url: 'signup.php',
+          method: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+    if (response.success) {
+    toastr.success('Account created successfully! 😊', 'Success');
+    setTimeout(function () {
+      window.location.replace("main.php");
+    }, 3000); // 3000 milliseconds = 3 seconds
+  } else {
+    toastr.error('Change Username 😣 and try again, another user is using the same username');
+  }
+},
+
+          error: function (xhr, status, error) {
+            console.error(error);
+            toastr.error('Error creating user account. Please try again later.', 'Error');
+          },
+        });
+      } else {
+        toastr.error('Incorrect OTP. Please try again.', 'Error');
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+      toastr.error('Error verifying OTP. Please try again later.', 'Error');
+    },
+  });
+});
+
+// Add event listeners to close buttons of notifications
+document.querySelectorAll('.notification .close-btn').forEach((closeBtn) => {
+  closeBtn.addEventListener('click', () => {
+    const notification = closeBtn.closest('.notification');
+    notification.classList.remove('show');
+    notification.classList.remove('success');
+    notification.classList.remove('error');
+  });
+});
+
+
+</script>
+
+					  
+						  
+			</body>
+			</html>

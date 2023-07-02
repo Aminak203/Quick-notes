@@ -1,0 +1,43 @@
+
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['note_id']) && isset($_POST['note_content'])) {
+    include("connection.php");
+
+    $note_id = $_POST['note_id'];
+    $note_content = $_POST['note_content'];
+    $username = $_SESSION['UserName'];
+
+    $stmt = $conn->prepare("UPDATE notes SET note=? WHERE note_id=? AND UserName=?");
+    $stmt->bind_param("sis", $note_content, $note_id, $username);
+
+    header("Access-Control-Allow-Origin: *");
+    header("Content-Type: application/json; charset=UTF-8");
+
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Note updated successfully']);
+    } else {
+        header("HTTP/1.0 500 Internal Server Error");
+        echo json_encode(['status' => 'error', 'message' => 'Error updating note: ' . $conn->error]);
+    }
+
+    $conn->close();
+} else {
+    header("HTTP/1.0 400 Bad Request");
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
+}
+?>
+^W
+
+cp ~/Testing/Quick-Notes/searchjavascript.js ~/searchjavascript.js
+
+^G
+G
+W
+
+
+
+
+nano update_notes.php
+

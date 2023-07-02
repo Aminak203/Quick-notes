@@ -1,0 +1,571 @@
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .note-container {
+    padding: 1rem;
+  }
+
+  .note-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .note-text {
+    font-size: 0.8rem;
+    min-height: 150px;
+  }
+
+  .save-btn {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .notes-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .note-card-title {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .note-card-text {
+    font-size: 0.9rem;
+  }
+
+  .left-column {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .left-column ul {
+    display: flex;
+    overflow-x: scroll;
+  }
+
+  .link-item {
+    margin-right: 10px;
+  }
+
+  .link {
+    padding: 5px;
+  }
+
+  .link img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .link span {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    max-width: 120px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    padding: 0.7rem;
+  }
+
+  input[type="submit"] {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* here is the font */
+h1, h2, h3, h4, h5, h6, input, textarea {
+  font-family: monospace,CustomSerif,Georgia,Cambria,Times New Roman,serif,'Arial', 'Georgia', 'Impact', 'Tahoma', 'Verdana'
+}
+
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.note-container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.note-title {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  margin-bottom: 1rem;
+}
+
+.note-text {
+  width: 100%;
+  min-height: 200px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  resize: vertical;
+}
+
+.save-btn {
+  display: inline-block;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.note-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+  .note-card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    
+    .note-card-text {
+      font-size: 1rem;
+      color: #666;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    /* Reset some browser defaults */
+body, h1, form {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #F2F2F7;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background-color: #007AFF;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--dark-text-clr);
+}
+.main-content h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+main {
+  padding: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input[type="submit"] {
+  background-color: #007AFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+input[type="submit"]:hover {
+  background-color: #005AD5;
+}
+
+#notification {
+  display: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.left-column {
+  background-color: #333;
+  width: 250px;
+  height: 100vh;
+  padding: 20px 0;
+}
+
+.left-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.left-column .link-items .link-item {
+  position: relative;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  background-color: #444;
+}
+
+.left-column .link-items .link-item .link img {
+  width: 40px;
+  height: 40px;
+}
+
+.left-column .link-items .link-item .link span {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+  max-width: 0;
+  opacity: 0;
+}
+
+.link:hover span {
+  max-width: 180px;
+  opacity: 1;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom:     10px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background-color: var(--bg-clr);
+  color: var(--dark-text-clr);;
+  cursor: text;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #444;
+}
+
+#notification {
+  display: none;
+  background-color: #4CAF50;
+  color: white;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.left-column {
+  background-color: #333;
+  color: white;
+  width: 250px;
+  padding: 20px;
+}
+
+.link-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-item a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.link-item a:hover {
+  background-color: #444;
+}
+
+.main-content {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2, p {
+  margin: 0 0 20px;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  /* background: #fff; */
+  /* box-shadow: 1px 1px 3px rgb(0 0 0 / 10%); */
+
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  resize: none;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  width: auto;
+  background: var(--primary-clr);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background: #555;
+}
+
+#notification {
+  display: none;
+  background: #4CAF50;
+  color: white;
+  padding: 16px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+}
+
+ul#notification {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#notification li {
+  background-color: #4CAF50;
+  color: white;
+  margin-bottom: 10px;
+  padding: 12px;
+}
+/* Modal background */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+}
+
+/* Modal content */
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 101;
+  display: none;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+/* 
+css for notifications
+ */
+ .notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.notification.error {
+  border-color: #f44336;
+}
+
+body.dark-mode {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+.link-item.dark-mode.active a ion-icon,
+.link-item.dark-mode.active a span {
+  color: #ffa500;
+}
+
